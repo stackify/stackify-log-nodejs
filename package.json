@@ -1,0 +1,19 @@
+{
+  "name": "stackify-logger",
+  "version": "1.0.0",
+  "description": "Stackify logging package",
+  "main": "index.js",
+  "scripts": {
+    "test": "not specified yet"
+  },
+  "keywords": [
+    "stackify",
+    "logger"
+  ],
+  "author": "Stackify",
+  "license": "ISC",
+  "dependencies": {
+    "on-finished": "^2.1.1",
+    "pkginfo": "^0.3.0"
+  }
+}
