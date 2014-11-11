@@ -1,21 +1,32 @@
-var util   = require('util'),
-    access = require('./lib/access'),
-    logger = require('./lib/logger'),
-    api    = require('./lib/api'),
-    CONFIG = require('./lib/config'),
-    sender = require('./sender');
+var api     = require('./lib/api'),
+    CONFIG  = require('./config/config'),
+    error   = require('./lib/error'),
+    exc     = require('./lib/exception'),
+    helpers = require('./lib/helpers'),
+    logger  = require('./lib/logger'),
+    sender  = require('./lib/sender');
 
-module.exports = {
-    CONFIG: CONFIG,
+module.exports = function (options) {
 
-    start: function () {
-        
-    },
+    api.identifyApp(options);
+    exc.exc();
 
-    log: logger.methods.log,
-    debug: logger.methods.debug,
-    info: logger.methods.info,
-    warn: logger.methods.warn,
-    error: logger.methods.error,
-    postLogs: api.postLogs
-}
+    return {
+        storage: logger.storage,
+        CONFIG: CONFIG,
+
+        log: logger.methods.log,
+        debug: logger.methods.debug,
+        info: logger.methods.info,
+        warn: logger.methods.warn,
+        error: logger.methods.error,
+
+        postLogs: api.postLogs,
+
+        checkError: error.checkError,
+
+        excCaught: exc.excCaught,
+        excHandler: exc.exc,
+        expressExcHandler: exc.expressExc
+    };
+};
