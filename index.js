@@ -1,21 +1,22 @@
-var api     = require('./lib/api'),
-    CONFIG  = require('./config/config'),
-    error   = require('./lib/error'),
-    exc     = require('./lib/exception'),
-    helpers = require('./lib/helpers'),
-    logger  = require('./lib/logger'),
-    sender  = require('./lib/sender');
+var api     = require('./lib/api'), // wrappers for API calls
+    CONFIG  = require('./config/config'), // configuration settings file
+    error   = require('./lib/error'), // error parser module
+    exc     = require('./lib/exception'),  // exception handler module
+    helpers = require('./lib/helpers'), // different helpers functions
+    logger  = require('./lib/logger'), // logging methods module
+    sender  = require('./lib/sender'); // wrapper for http/https requests
 
 module.exports = function (options) {
 
     api.identifyApp(options);
-    exc.exc();
-
+    /*exc.exc();
+*/
     return {
         storage: logger.storage,
         CONFIG: CONFIG,
 
         log: logger.methods.log,
+        trace: logger.methods.trace,
         debug: logger.methods.debug,
         info: logger.methods.info,
         warn: logger.methods.warn,
@@ -25,7 +26,6 @@ module.exports = function (options) {
 
         checkError: error.checkError,
 
-        excCaught: exc.excCaught,
         excHandler: exc.exc,
         expressExcHandler: exc.expressExc
     };
