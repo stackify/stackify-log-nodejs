@@ -6,27 +6,22 @@ var api     = require('./lib/api'), // wrappers for API calls
     logger  = require('./lib/logger'), // logging methods module
     sender  = require('./lib/sender'); // wrapper for http/https requests
 
-module.exports = function (options) {
+module.exports = {
 
-    api.identifyApp(options);
-    /*exc.exc();
-*/
-    return {
-        storage: logger.storage,
-        CONFIG: CONFIG,
+    start: function(options) {
+        api.methods.identifyApp(options);
+        exc.exc();
+    },
 
-        log: logger.methods.log,
-        trace: logger.methods.trace,
-        debug: logger.methods.debug,
-        info: logger.methods.info,
-        warn: logger.methods.warn,
-        error: logger.methods.error,
+    log: logger.methods.log,
+    trace: logger.methods.trace,
+    debug: logger.methods.debug,
+    info: logger.methods.info,
+    warn: logger.methods.warn,
+    error: logger.methods.error,
 
-        postLogs: api.postLogs,
+    push: logger.methods.push,
 
-        checkError: error.checkError,
-
-        excHandler: exc.exc,
-        expressExcHandler: exc.expressExc
-    };
+    excHandler: exc.exc,
+    expressExcHandler: exc.expressExc
 };

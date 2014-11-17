@@ -1,35 +1,55 @@
 var http = require('http');
 var util = require('util');
-var stackify = require('./index')({license_key: 'sdfsdf'});
+var stackify = require('./index')({apiKey: '0Zw8Fj4Hr3Aa1Sf2Gw4Cb3Gk7Fp6Zn6Sc0Gw2Cr', env: 'dev'});
 var stack = require('stack-trace');
 var pkginfo = require('pkginfo')(module, 'name');
+var express = require("express");
+var app = express();
+var bodyParser = require('body-parser');
+var port = process.env.PORT || 5000;
 
-var stret = function stret() {
-    foo();
-};
-var hty = function hty() {
-    stret();
-};
-var tr = {
-    af: hty
-}
-var foo = function foo () {
-    stackify.log('error', 'sdfsdf', {err: new Error('rttdfgdfg'), fert: 45});
-    stackify.log('error', 'sdfsdf');
+
+var foo = function foo() {
     stackify.warn('sdfg', {dfgh: 45, gh: 67});
+    stackify.error('dfg');
 };
 foo();
+fg;
 
-http.createServer(function (req, res) {
-    stackify.excHandler(req,res);
-    df;
+setInterval(function () {
+    stackify.info('test');
+}, 3500);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+app.get("/", function (req, res) {
+    foo();
+    stackify.warn('sdf');
     var json = JSON.stringify(stackify.storage);
-    res.writeHead(200, {"Content-Type": "application/json"});
-    res.end(json);
-}).listen(6777);
+    res.set({"Content-Type": "application/json"});
+    res.status(200).send(json);
+});
 
-console.log('server.running')
+app.post("/post", function (req, res) {
+    /* some server side logic */
+    something;
+    res.send('OK');
+});
 
-/*stackify.log('debug', 'dfg');
-stackify.debuge('dfgdfgfg');
-*/
+app.put("/put", function (req, res) {
+    stackify.log('info', JSON.stringify(req.query), req.body);
+    res.json(stackify.storage[stackify.storage.length - 1]);
+});
+
+app.delete("/exc", function (req, res) {
+    throw new RangeError('error has been thrown');
+});
+
+app.use(stackify.expressExcHandler);
+
+app.listen(port, function () {
+    console.log("Listening on " + port);
+});
