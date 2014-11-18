@@ -1,4 +1,5 @@
 module.exports = {
+    'PROTOCOL' : 'https',
     'HOST': 'dev.stackify.com',
     'PORT': 443,
     'IDENTIFY_PATH': '/API/Metrics/IdentifyApp',

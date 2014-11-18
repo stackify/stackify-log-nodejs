@@ -10,8 +10,8 @@ module.exports = {
 
     start: function(options) {
         api.methods.identifyApp(options);
-        exc.exc();
-    },
+/*        exc.exc();
+*/    },
 
     log: logger.methods.log,
     trace: logger.methods.trace,

@@ -1,6 +1,7 @@
 var http = require('http');
 var util = require('util');
-var stackify = require('./index')({apiKey: '0Zw8Fj4Hr3Aa1Sf2Gw4Cb3Gk7Fp6Zn6Sc0Gw2Cr', env: 'dev'});
+var stackify = require('./index');
+stackify.start({apiKey: '0Zw8Fj4Hr3Aa1Sf2Gw4Cb3Gk7Fp6Zn6Sc0Gw2Cr', env: 'dev'/*, proxy: 'http://74.50.126.249:8089'*/});
 var stack = require('stack-trace');
 var pkginfo = require('pkginfo')(module, 'name');
 var express = require("express");
@@ -14,7 +15,6 @@ var foo = function foo() {
     stackify.error('dfg');
 };
 foo();
-fg;
 
 setInterval(function () {
     stackify.info('test');
