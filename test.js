@@ -16,14 +16,12 @@ winston.add(winston.transports.Stackify, {level: 'silly', storage: stackify});
 var foo = function foo() {
 /*    stackify.warn('sdfg', {dfgh: 45, gh: 67});
     stackify.error('dfg');*/
-    for (var i = 2345; i >= 0; i--) {
+    for (var i = 4; i >= 0; i--) {
         stackify.warn('sdfg');
     };
-    setTimeout(function() {
-      for (var i = 3345; i >= 0; i--) {
-        winston.info('info');
-      };  
-    }, 10000);
+
+    stackify.log('error', 'test');
+    stackify.error('msg', {error: new Error('simple error')});
 };
 foo();
 
@@ -60,6 +58,9 @@ app.delete("/exc", function (req, res) {
 });
 
 app.use(stackify.expressExcHandler);
+app.use(function(err, req, res, next) {
+    process.exit(0);
+});
 
 app.listen(port, function () {
     console.log("Listening on " + port);

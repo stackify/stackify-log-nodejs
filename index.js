@@ -7,11 +7,11 @@ var api     = require('./lib/api'), // wrappers for API calls
     sender  = require('./lib/sender'); // wrapper for http/https requests
 
 module.exports = {
-
+    // start sending logs
     start: function(options) {
         api.methods.identifyApp(options);
-/*        exc.exc();
-*/    },
+        exc.exc();
+    },
 
     log: logger.methods.log,
     trace: logger.methods.trace,
@@ -19,7 +19,7 @@ module.exports = {
     info: logger.methods.info,
     warn: logger.methods.warn,
     error: logger.methods.error,
-
+    
     push: logger.methods.push,
 
     excHandler: exc.exc,
