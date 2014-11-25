@@ -16,10 +16,10 @@ winston.add(winston.transports.Stackify, {level: 'silly', storage: stackify});
 var foo = function foo() {
 /*    stackify.warn('sdfg', {dfgh: 45, gh: 67});
     stackify.error('dfg');*/
-    for (var i = 4; i >= 0; i--) {
+/*    for (var i = 4; i >= 0; i--) {
         stackify.warn('sdfg');
     };
-
+*/
     stackify.log('error', 'test');
     stackify.error('msg', {error: new Error('simple error')});
 };
@@ -57,7 +57,7 @@ app.delete("/exc", function (req, res) {
     throw new RangeError('error has been thrown');
 });
 
-app.use(stackify.expressExcHandler);
+app.use(stackify.expressExceptionHandler);
 app.use(function(err, req, res, next) {
     process.exit(0);
 });

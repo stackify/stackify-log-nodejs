@@ -1,22 +1,26 @@
 {
   "name": "stackify-logger",
   "version": "1.0.0",
-  "description": "Stackify logging package",
+  "description": "Stackify logs and errors for Node.Js",
   "main": "index.js",
   "scripts": {
-    "test": "not specified yet"
+    "test": "not specified"
   },
   "keywords": [
     "stackify",
-    "logger"
+    "logger",
+    "log"
   ],
   "author": "Stackify",
-  "license": "ISC",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stackify/stackify-log-nodejs.git"
+  },
+  "homepage": "https://github.com/stackify/stackify-log-nodejs",
   "dependencies": {
-    "https-proxy-agent": "^0.3.5",
-    "on-finished": "^2.1.1",
-    "pkginfo": "^0.3.0",
-    "request": "^2.48.0",
+    "pkginfo": "~0.3.x",
+    "request": "~2.48.x",
     "stack-trace": "0.0.9"
   }
 }
