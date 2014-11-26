@@ -8,9 +8,9 @@ var api       = require('./lib/api'), // wrappers for API calls
 
 module.exports = {
     // start sending logs
-    start: function(options) {
+    start: function (options) {
         api.methods.identifyApp(options);
-        exception.exceptionHandler();
+        exception.exceptionHandler(options.exitOnError);
     },
 
     log: logger.methods.log,

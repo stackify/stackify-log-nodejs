@@ -10,8 +10,6 @@ var bodyParser = require('body-parser');
 var port = process.env.PORT || 5000;
 
 stackify.start({apiKey: '0Zw8Fj4Hr3Aa1Sf2Gw4Cb3Gk7Fp6Zn6Sc0Gw2Cr', env: 'dev'/*, proxy: 'http://89.22.50.155:3128'*/});
-require('./new');
-winston.add(winston.transports.Stackify, {level: 'silly', storage: stackify});
 
 var foo = function foo() {
 /*    stackify.warn('sdfg', {dfgh: 45, gh: 67});
@@ -57,10 +55,7 @@ app.delete("/exc", function (req, res) {
     throw new RangeError('error has been thrown');
 });
 
-app.use(stackify.expressExceptionHandler);
-app.use(function(err, req, res, next) {
-    process.exit(0);
-});
+app.use(stackify.expressExceptionHandler());
 
 app.listen(port, function () {
     console.log("Listening on " + port);
