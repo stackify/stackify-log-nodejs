@@ -45,7 +45,7 @@ All the details could be found here - [Winston Transport for Stackify](https://g
 
 #### Using direct logger
 
-If you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: trace, debug, info, warn and error. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
+If you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: `trace`, `debug`, `info`, `warn` and `error`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
 ```js
 stackify.log(level, message, meta)
 stackify.trace(message, meta)
@@ -79,31 +79,35 @@ function (req, res, next) {
       next();
 }
 
-Using with pure NodeJS app
-If you are not using any of the frameworks and all requests are handled inside  native createServer method you should run stackify.stats() first line inside of this method :
+##### Using with pure NodeJS app
+If you are not using any of the frameworks and all requests are handled inside  native createServer method you should run stackify.exceptionHandler() first line inside of this method :
 
-var http = require('http')
-var stackify = require('stackify-logger')
+```js
+var http = require('http');
+var stackify = require('stackify-logger');
 http.createServer(function (req, res) {
     stackify.stats(req, res);
-    res.setHeader('content-type', 'text/plain')
-    res.end('hello')
-  })
-})
+    res.setHeader('content-type', 'text/plain');
+    res.end('hello');
+  });
+});
+```
+
 You can use it also with any framework that doesn’t modify native createServer method.
 
 
-Using with express
-It acts as middleware when running on express-based apps. A middleware is a function which has access to request object (req) and response object (res), and the next middleware in line in the request-response cycle of an Express application (next). Each middleware can execute any code, make changes to request and response object, finish request-response cycle, and call the next middleware in the stack. Since middleware are execute serially, their order of inclusion is important.
+##### Using with Express
+It acts as middleware when running on express-based apps. Since middleware are execute serially, their order of inclusion is important.
 
 You can activate it with the app.use() command in the appropriate place of your code, e.g.:
+
+```js
 var express = require('express');
 var app = express();
-app.use(stackify.stats);
+app.use(stackify.expressExceptionHandler());
+```
 
-To handle exceptions correctly put this right after all route handlers and before all the other app.use() commands.
-
-To use it with the frameworks that have a wrapper around app.use() method or have different ways to use middleware plugins you should check the exact way of using middleware in it. For example, to add stackify.stats in SailsJS you should do this
+To handle exceptions correctly put this right after all route handlers and before all the other error middleware.
 
 ## License
 
