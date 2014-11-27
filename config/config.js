@@ -11,9 +11,9 @@ module.exports = {
         FIVE_MINUTES_DELAY : 300000,
     },
     MSG: {
-        QUEUE_CAP          : 10000, // queue cap
-        MIN_BATCH_SIZE     : 10, // maximum batch size
-        MAX_BATCH_SIZE     : 100, // maximum batch size
+        QUEUE_CAP          : 10000,
+        MIN_BATCH_SIZE     : 10,
+        MAX_BATCH_SIZE     : 100,
         MAX_DUP_ERROR_PER_MINUTE: 5, // Number of instances of a unique error that are allowed to be sent in one minute
 
     },
