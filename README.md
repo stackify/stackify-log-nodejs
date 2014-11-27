@@ -24,10 +24,10 @@ Start sending the logs:
 stackify.start(options);
 ```
 The following options could be passed. 'apiKey' is the only one that required:
-* __apiKey:__ client license key.
-* __env:__ environment name.
-* __proxy:__ proxy server if you want to send requests via proxy.
-* __exitOnError:__ Boolean flag indicating whether to shutdown the server after logging an uncaughtException.
+* __apiKey:__ client license key
+* __env:__ environment name
+* __proxy:__ proxy server if you want to send requests via proxy
+* __exitOnError:__ Boolean flag indicating whether to shutdown the server after logging an uncaught exception
 
 #### Using with Winston
 
@@ -56,7 +56,7 @@ stackify.error(message, meta)
 ```
 The timestamp will be added to every message by default.
 
-Meta parameter should be a valid JSON object.
+Meta parameter should be an object.
 
 Examples of usage:
 ```js
@@ -76,7 +76,7 @@ By executing `stackify.start()` you set handler for uncaught exceptions.
 Be sure to run it before any methods that set exception handlers.
 
 ##### Using with pure NodeJS app
-If you are not using any of the frameworks and all requests are handled inside native `createServer()` method and you want to get web details of exception to be sent with it you should run `stackify.exceptionHandler(req)` first line inside of this method :
+If you want to get web details of an exception to be sent with it you should run `stackify.exceptionHandler(req)` first line inside of native `createServer` method :
 
 ```js
 var http = require('http');
