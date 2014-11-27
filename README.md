@@ -32,12 +32,12 @@ The following options could be passed. 'apiKey' is the only one that required:
 #### Using with Winston
 
 ```bash
-$ npm install stackify-logger
+$ npm install winston-stackify
 ```
 
 If you are already using Winston you should add the stackify transport module to your instance of Winston:
 ```js
-require('winston-stackify');
+require('winston-stackify').Stackify;
 winston.add(winston.transports.Stackify(options));
 ```
 
@@ -72,42 +72,44 @@ stackify.log('error', {error : new Error()});
 When logging an error message you could pass an Error object in metadata like in the last case so the exception details would be available.
 
 #### Exception handling
-Supported frameworks
-Express (ver 4.x) and all express-based frameworks only (e.g. SailsJS, Connect, LocomotiveJS) will be supported. This means all of the frameworks that support the format of the middleware functions used in Express.JS.
-function (req, res, next) {
-      //some code
-      next();
-}
+By executing stackify.start() you set handler for uncaught exceptions.
+Be sure to run it before any methods that set exception handlers.
 
 ##### Using with pure NodeJS app
-If you are not using any of the frameworks and all requests are handled inside  native createServer method you should run stackify.exceptionHandler() first line inside of this method :
+If you are not using any of the frameworks and all requests are handled inside native `createServer()` method and you want to get web details of exception to be sent with it you should run stackify.exceptionHandler(req) first line inside of this method :
 
 ```js
 var http = require('http');
 var stackify = require('stackify-logger');
 http.createServer(function (req, res) {
-    stackify.stats(req, res);
+    stackify.exceptionHandler(req);
     res.setHeader('content-type', 'text/plain');
     res.end('hello');
   });
 });
 ```
+where req is request object, instance of `http.IncomingMessage`
 
 You can use it also with any framework that doesn’t modify native createServer method.
 
 
 ##### Using with Express
-It acts as middleware when running on express-based apps. Since middleware are execute serially, their order of inclusion is important.
-
-You can activate it with the app.use() command in the appropriate place of your code, e.g.:
+Global handler doesn't work inside Express route methods.
+You should use error-handling middleware function `stackify.expressExceptionHandler`. Since middleware is executed serially, it's order of inclusion is important. Be sure to add it before any other error-handling middleware.
 
 ```js
 var express = require('express');
 var app = express();
-app.use(stackify.expressExceptionHandler());
+
+/* 
+*** block of route handlers ***
+*** *** **** **** **** **** ***
+*/
+
+app.use(stackify.expressExceptionHandler);
 ```
 
-To handle exceptions correctly put this right after all route handlers and before all the other error middleware.
+To handle exceptions correctly put this right after all route handlers.
 
 ## License
 

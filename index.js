@@ -6,7 +6,7 @@ module.exports = {
     // start sending logs
     start: function (options) {
         api.methods.identifyApp(options);
-        exception.exceptionHandler(options.exitOnError);
+        exception.exceptionHandler(null, options.exitOnError);
     },
 
     log: logger.methods.log,
