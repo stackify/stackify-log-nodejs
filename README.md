@@ -72,11 +72,11 @@ stackify.log('error', {error : new Error()});
 When logging an error message you could pass an Error object in metadata like in the last case so the exception details would be available.
 
 #### Exception handling
-By executing stackify.start() you set handler for uncaught exceptions.
+By executing `stackify.start()` you set handler for uncaught exceptions.
 Be sure to run it before any methods that set exception handlers.
 
 ##### Using with pure NodeJS app
-If you are not using any of the frameworks and all requests are handled inside native `createServer()` method and you want to get web details of exception to be sent with it you should run stackify.exceptionHandler(req) first line inside of this method :
+If you are not using any of the frameworks and all requests are handled inside native `createServer()` method and you want to get web details of exception to be sent with it you should run `stackify.exceptionHandler(req)` first line inside of this method :
 
 ```js
 var http = require('http');
@@ -88,7 +88,7 @@ http.createServer(function (req, res) {
   });
 });
 ```
-where req is request object, instance of `http.IncomingMessage`
+where req is request object, instance of native NodeJS `http.IncomingMessage` object
 
 You can use it also with any framework that doesn’t modify native createServer method.
 
