@@ -7,6 +7,7 @@ module.exports = {
     start: function (options) {
         api.methods.identifyApp(options);
         exception.exceptionHandler(null, options.exitOnError);
+        exception.gracefulExitHandler();
     },
 
     log: logger.methods.log,

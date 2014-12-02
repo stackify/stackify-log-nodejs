@@ -1,22 +1,29 @@
 {
-    "name": "stackify-logger",
-    "version": "1.0.0",
-    "description": "Stackify logs and errors for Node.Js",
-    "main": "index.js",
-    "scripts": {
-        "test": "not specified"
-    },
-    "keywords": ["stackify", "logger", "log"],
-    "author": "Stackify",
-    "license": "Apache-2.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/stackify/stackify-log-nodejs.git"
-    },
-    "homepage": "https://github.com/stackify/stackify-log-nodejs",
-    "dependencies": {
-        "pkginfo": "~0.3.x",
-        "request": "~2.48.x",
-        "stack-trace": "0.0.9"
-    }
+  "name": "stackify-logger",
+  "version": "1.0.0",
+  "description": "Stackify logs and errors for Node.Js",
+  "main": "index.js",
+  "scripts": {
+    "test": "not specified"
+  },
+  "keywords": [
+    "stackify",
+    "logger",
+    "log"
+  ],
+  "author": "Stackify",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stackify/stackify-log-nodejs.git"
+  },
+  "homepage": "https://github.com/stackify/stackify-log-nodejs",
+  "dependencies": {
+    "http-sync": "0.0.5",
+    "pkginfo": "~0.3.x",
+    "request": "~2.48.x",
+    "stack-trace": "0.0.9",
+    "sync-request": "^1.0.1",
+    "urllib-sync": "^1.0.1"
+  }
 }
