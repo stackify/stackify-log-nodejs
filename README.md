@@ -27,7 +27,7 @@ The following options could be passed. 'apiKey' is the only one that required:
 * __apiKey:__ client license key
 * __env:__ environment name
 * __proxy:__ proxy server if you want to send requests via proxy
-* __exitOnError:__ Boolean flag indicating whether to shutdown the server after logging an uncaught exception
+* __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
 
 #### Using with Winston
 
@@ -47,16 +47,16 @@ All the details could be found here - [Winston Transport for Stackify](https://g
 
 If you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: `trace`, `debug`, `info`, `warn` and `error`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
 ```js
-stackify.log(level, message, meta)
-stackify.trace(message, meta)
-stackify.debug(message, meta)
-stackify.info(message, meta)
-stackify.warn(message, meta)
-stackify.error(message, meta)
+stackify.log(level, message [, meta1, ... , metaN])
+stackify.trace(message [, meta1, ... , metaN])
+stackify.debug(message [, meta1, ... , metaN])
+stackify.info(message [, meta1, ... , metaN])
+stackify.warn(message [, meta1, ... , metaN])
+stackify.error(message [, meta1, ... , metaN])
 ```
+Message must be a string
+meta1 ... metaN - a list of additional parameters of any type.
 The timestamp will be added to every message by default.
-
-Meta parameter should be an object.
 
 Examples of usage:
 ```js
@@ -88,7 +88,7 @@ http.createServer(function (req, res) {
   });
 });
 ```
-where req is request object, instance of native NodeJS `http.IncomingMessage` object
+where req is request object, an instance of native NodeJS `http.IncomingMessage` object
 
 You can use it also with any framework that doesn’t modify native createServer method.
 

@@ -29,6 +29,15 @@ app.get("/", function (req, res) {
 app.get("/1", function (req, res) {
     stackify.log('error', 'test');
     stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    stackify.error('msg', {error: new Error('simple error')});
+    
+    process.exit(1);
 });
 
 app.post("/post", function (req, res) {
