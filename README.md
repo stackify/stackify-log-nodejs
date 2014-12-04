@@ -117,7 +117,7 @@ app.use(stackify.expressExceptionHandler);
 
 To handle exceptions correctly put this right after all route handlers.
 
-#### Troubleshooting
+## Troubleshooting
 When request to Stackify fails for some reason, an error message is being printed to your `process.stderr` stream 
 
 ## License
