@@ -18,7 +18,7 @@ $ npm install stackify-logger
 ```js
 var stackify = require(‘stackify-logger’);
 ```
-Start sending the logs:
+Start sending logs:
 ```js
 // this should be executed only once in the app
 stackify.start(options);
@@ -26,11 +26,9 @@ stackify.start(options);
 The following options could be passed. 'apiKey' is the only one that required:
 * __apiKey:__ client license key
 * __env:__ environment name
-* __proxy:__ proxy server if you want to send requests via proxy.
-
-*Notice:* stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
-
 * __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
+* __proxy:__ proxy server if you want to send requests via proxy.
+*Notice:* stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
 
 #### Using with Winston
 
