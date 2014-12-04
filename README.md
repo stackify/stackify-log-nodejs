@@ -28,7 +28,7 @@ The following options could be passed. 'apiKey' is the only one that required:
 * __env:__ environment name
 * __proxy:__ proxy server if you want to send requests via proxy.
 
-* Notice: * stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
+*Notice:* stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
 
 * __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
 
@@ -60,7 +60,9 @@ stackify.error(message [, meta1, ... , metaN])
 ```
 
 Message must be a string.
+
 meta1 ... metaN - a list of additional parameters of any type.
+
 The timestamp will be added to every message by default.
 
 Examples of usage:
