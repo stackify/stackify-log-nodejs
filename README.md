@@ -26,12 +26,16 @@ stackify.start(options);
 The following options could be passed. 'apiKey' is the only one that required:
 * __apiKey:__ client license key
 * __env:__ environment name
-* __proxy:__ proxy server if you want to send requests via proxy
+* __proxy:__ proxy server if you want to send requests via proxy.
+
+* Notice: * stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
+
 * __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
 
 #### Using with Winston
 
 ```bash
+$ npm install winston
 $ npm install winston-stackify
 ```
 
@@ -54,7 +58,8 @@ stackify.info(message [, meta1, ... , metaN])
 stackify.warn(message [, meta1, ... , metaN])
 stackify.error(message [, meta1, ... , metaN])
 ```
-Message must be a string
+
+Message must be a string.
 meta1 ... metaN - a list of additional parameters of any type.
 The timestamp will be added to every message by default.
 
@@ -110,6 +115,9 @@ app.use(stackify.expressExceptionHandler);
 ```
 
 To handle exceptions correctly put this right after all route handlers.
+
+#### Troubleshooting
+When request to Stackify fails for some reason, an error message is being printed to your `process.stderr` stream 
 
 ## License
 

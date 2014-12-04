@@ -18,7 +18,7 @@ module.exports = {
 
     },
     IDENTIFY_DELAY: 300000, // 5 minutes delay if identifyApp call failed
-    COOKIE_MASK: 'X-MASKED-X' // cookie headers and values mask
+    COOKIE_MASK: 'X-MASKED-X', // cookie headers and values mask
     LOGGER_VERSION: 'Node.js Stackify v.1.0',
-    X-STACKIFY-PV: 'V1'
+    X_STACKIFY_PV: 'V1'
 };
