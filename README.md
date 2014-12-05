@@ -29,7 +29,7 @@ The following options could be passed. 'apiKey' is the only one that required:
 * __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
 * __proxy:__ proxy server if you want to send requests via proxy.
 
-*Notice:* stackify-logger sends synchronous requests before any `process.exit()` calls in your code. Sending via proxy wouldn't be possible in this case.
+*Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.
 
 #### Using with Winston
 
@@ -62,8 +62,6 @@ stackify.error(message [, meta1, ... , metaN])
 
 **meta1 ... metaN** - a list of additional parameters of any type.
 
-The timestamp will be added to every message by default.
-
 Examples of usage:
 ```js
 // Add the module to all the script files where you want to log any messages.
@@ -75,33 +73,15 @@ stackify.info('any message', {anything: 'this is metadata'});
 stackify.warn('attention');
 stackify.log('error', {error : new Error()});
 ```
-When logging an error message you could pass an Error object in metadata like in the last case so the exception details would be available.
+When logging an error message you can pass an Error object in metadata like in the last example, so the exception details would be available.
 
 #### Exception handling
-By executing `stackify.start()` you set handler for uncaught exceptions.
-Be sure to run it before any methods that set exception handlers.
-
-##### Using with pure NodeJS app
-If you want to get web details of an exception to be sent with it you should run `stackify.exceptionHandler(req)` first line inside of native `createServer` method :
-
-```js
-var http = require('http');
-var stackify = require('stackify-logger');
-http.createServer(function (req, res) {
-    stackify.exceptionHandler(req);
-    res.setHeader('content-type', 'text/plain');
-    res.end('hello');
-  });
-});
-```
-where req is request object, an instance of native NodeJS `http.IncomingMessage` object
-
-You can use it also with any framework that doesn’t modify native createServer method.
-
+By executing `stackify.start()` you set a handler for uncaught exceptions.
+Make sure you run it before any methods that set exception handlers.
 
 ##### Using with Express
 Global handler doesn't work inside Express route methods.
-You should use error-handling middleware function `stackify.expressExceptionHandler`. Since middleware is executed serially, it's order of inclusion is important. Be sure to add it before any other error-handling middleware.
+You should use error-handling middleware function `stackify.expressExceptionHandler`. Since middleware is executed serially, it's order of inclusion is important. Make sure you add it before any other error-handling middleware.
 
 ```js
 var express = require('express');

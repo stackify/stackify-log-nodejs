@@ -6,7 +6,7 @@ module.exports = {
     // start sending logs
     start: function (options) {
         api.methods.identifyApp(options);
-        exception.exceptionHandler(null, options.exitOnError);
+        exception.catchException(options.exitOnError || false);
         exception.gracefulExitHandler();
     },
 
@@ -16,9 +16,9 @@ module.exports = {
     info: logger.methods.info,
     warn: logger.methods.warn,
     error: logger.methods.error,
-
+    
+    //common method for handling logged messages
     push: logger.methods.push,
 
-    exceptionHandler: exception.exceptionHandler,
     expressExceptionHandler: exception.expressExceptionHandler
 };

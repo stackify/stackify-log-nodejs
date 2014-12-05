@@ -14,7 +14,7 @@ module.exports = {
         QUEUE_CAP          : 10000,
         MIN_BATCH_SIZE     : 10,
         MAX_BATCH_SIZE     : 100,
-        MAX_DUP_ERROR_PER_MINUTE: 100, // Number of instances of a unique error that are allowed to be sent in one minute
+        MAX_DUP_ERROR_PER_MINUTE: 100, // number of instances of a unique error that are allowed to be sent in one minute
 
     },
     IDENTIFY_DELAY: 300000, // 5 minutes delay if identifyApp call failed
