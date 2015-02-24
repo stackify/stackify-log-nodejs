@@ -1,9 +1,9 @@
 module.exports = {
     PROTOCOL               : 'https',
-    HOST                   : 'dev.stackify.com',
+    HOST                   : 'api.stackify.com',
     PORT                   : 443,
-    IDENTIFY_PATH          : '/API/Metrics/IdentifyApp',
-    LOG_SAVE_PATH          : '/API/Log/Save',
+    IDENTIFY_PATH          : '/Metrics/IdentifyApp',
+    LOG_SAVE_PATH          : '/Log/Save',
     DELAY: { // possible delay values in millis
         ONE_SECOND_DELAY   : 1000,
         FIVE_SECONDS_DELAY : 5000,
