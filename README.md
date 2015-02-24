@@ -31,36 +31,21 @@ The following options could be passed. 'apiKey' is the only one that required:
 
 *Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.
 
-#### Using with Winston
-
-```bash
-$ npm install winston
-$ npm install winston-stackify
-```
-
-If you are already using Winston you should add the stackify transport module to your instance of Winston:
-```js
-require('winston-stackify').Stackify;
-winston.add(winston.transports.Stackify(options));
-```
-
-All the details could be found here - [Winston Transport for Stackify](https://github.com/stackify/stackify-log-winston)
-
 #### Using direct logger
 
 If you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: `trace`, `debug`, `info`, `warn` and `error`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
 ```js
-stackify.log(level, message [, meta1, ... , metaN])
-stackify.trace(message [, meta1, ... , metaN])
-stackify.debug(message [, meta1, ... , metaN])
-stackify.info(message [, meta1, ... , metaN])
-stackify.warn(message [, meta1, ... , metaN])
-stackify.error(message [, meta1, ... , metaN])
+stackify.log(level, message [, meta])
+stackify.trace(message [, meta])
+stackify.debug(message [, meta])
+stackify.info(message [, meta])
+stackify.warn(message [, meta])
+stackify.error(message [, meta])
 ```
 
 **Message** must be a string.
 
-**meta1 ... metaN** - a list of additional parameters of any type.
+**meta** - an additional parameter of any type.
 
 Examples of usage:
 ```js
