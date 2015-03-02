@@ -22,8 +22,10 @@ module.exports = {
     //common method for handling logged messages
     push: logger.methods.push,
     // setting logger name to Winston logger if it's used
-    setLoggerName: function () {
-        CONFIG.SELECTED_LOGGER = CONFIG.WINSTON_LOGGER_VERSION;
+    setLoggerName: function (name) {
+        if (name === 'Winston') {
+            CONFIG.SELECTED_LOGGER = CONFIG.WINSTON_LOGGER_VERSION;
+        }
     },
 
     expressExceptionHandler: exception.expressExceptionHandler
