@@ -16,7 +16,7 @@ $ npm install stackify-logger
 ## Usage
 
 ```js
-var stackify = require(‘stackify-logger’);
+var stackify = require('stackify-logger');
 ```
 Start sending logs:
 ```js
