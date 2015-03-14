@@ -1,6 +1,6 @@
 {
   "name": "stackify-logger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Stackify logs and errors for Node.Js",
   "main": "index.js",
   "scripts": {
@@ -11,16 +11,27 @@
     "logger",
     "log"
   ],
-  "author": "Stackify",
+  "author": {
+    "name": "Stackify"
+  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stackify/stackify-log-nodejs.git"
+    "url": "http://github.com/stackify/stackify-log-nodejs.git"
   },
   "homepage": "https://github.com/stackify/stackify-log-nodejs",
   "dependencies": {
     "request": "~2.48.x",
     "stack-trace": "0.0.9",
     "sync-request": "^1.0.1"
-  }
+  },
+  "readme": "#Stackify Log API for Node.js\n\nErrors and Logs Overview:\n\nhttp://docs.stackify.com/m/7787/l/189767\n\nSign Up for a Trial:\n\nhttp://www.stackify.com/sign-up/\n\n## Installation\n```bash\n$ npm install stackify-logger\n```\n\n## Usage\n\n```js\nvar stackify = require(‘stackify-logger’);\n```\nStart sending logs:\n```js\n// this should be executed only once in the app\nstackify.start(options);\n```\nThe following options could be passed. 'apiKey' is the only one that required:\n* __apiKey:__ client license key\n* __env:__ environment name\n* __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false\n* __proxy:__ proxy server if you want to send requests via proxy.\n\n*Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.\n\n#### Using direct logger\n\nIf you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: `trace`, `debug`, `info`, `warn` and `error`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:\n```js\nstackify.log(level, message [, meta])\nstackify.trace(message [, meta])\nstackify.debug(message [, meta])\nstackify.info(message [, meta])\nstackify.warn(message [, meta])\nstackify.error(message [, meta])\n```\n\n**Message** must be a string.\n\n**meta** - an additional parameter of any type.\n\nExamples of usage:\n```js\n// Add the module to all the script files where you want to log any messages.\nvar stackify = require('stackify-logger');\n\nstackify.log('info', 'hey!');\nstackify.debug('any message');\nstackify.info('any message', {anything: 'this is metadata'});\nstackify.warn('attention');\nstackify.log('error', {error : new Error()});\n```\nWhen logging an error message you can pass an Error object in metadata like in the last example, so the exception details would be available.\n\n#### Exception handling\nBy executing `stackify.start()` you set a handler for uncaught exceptions.\nMake sure you run it before any methods that set exception handlers.\n\n##### Using with Express\nGlobal handler doesn't work inside Express route methods.\nYou should use error-handling middleware function `stackify.expressExceptionHandler`. Since middleware is executed serially, it's order of inclusion is important. Make sure you add it before any other error-handling middleware.\n\n```js\nvar express = require('express');\nvar app = express();\n\n/* \n*** block of route handlers ***\n*** *** **** **** **** **** ***\n*/\n\napp.use(stackify.expressExceptionHandler);\n```\n\nTo handle exceptions correctly put this right after all route handlers.\n\n## Troubleshooting\nWhen request to Stackify fails for some reason, an error message is being printed to your `process.stderr` stream \n\n## License\n\nCopyright 2014 Stackify, LLC.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "readmeFilename": "README.md",
+  "gitHead": "d0b7a4ade02acf6dc17d5c1e96d67a78edc9ed7f",
+  "bugs": {
+    "url": "https://github.com/stackify/stackify-log-nodejs/issues"
+  },
+  "_id": "stackify-logger@1.0.1",
+  "_shasum": "33730db585d53b43988b359145d76629e7ec35f1",
+  "_from": "stackify-logger@"
 }
