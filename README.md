@@ -28,6 +28,8 @@ The following options could be passed. 'apiKey' is the only one that required:
 * __env:__ environment name
 * __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
 * __proxy:__ proxy server if you want to send requests via proxy.
+* __debug:__ boolean flag, turning on the debug mode. When set to true the log file (`stackify-debug.log`) is created in the working directory and all of the library actions is being written to it, defaults to false.
+
 
 *Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.
 
