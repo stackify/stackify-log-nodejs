@@ -21,7 +21,7 @@ var stackify = require('stackify-logger');
 Start sending logs:
 ```js
 // this should be executed only once in the app
-stackify.start(options);
+stackify.start({apiKey: '***', env: 'dev'});
 ```
 The following options could be passed. 'apiKey' is the only one that required:
 * __apiKey:__ client license key
