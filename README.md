@@ -86,7 +86,7 @@ To handle exceptions correctly put this right after all route handlers.
 
 ## Troubleshooting
 
-If logging isn't working, enable internal debug logging for Stackify by setting the degub flag in the Stackify options.
+If logging isn't working, enable internal debug logging for Stackify by setting the debug flag in the Stackify options.
 
 ```js
 stackify.start({apiKey: '***', env: 'dev', debug: true});
