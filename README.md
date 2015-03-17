@@ -85,7 +85,14 @@ app.use(stackify.expressExceptionHandler);
 To handle exceptions correctly put this right after all route handlers.
 
 ## Troubleshooting
-When request to Stackify fails for some reason, an error message is being printed to your `process.stderr` stream 
+
+If logging isn't working, enable internal debug logging for Stackify by setting the degub flag in the Stackify options.
+
+```js
+stackify.start({apiKey: '***', env: 'dev', debug: true});
+```
+
+You will see stackify-debug.log in your application's directory.
 
 ## License
 
