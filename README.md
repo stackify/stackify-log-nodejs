@@ -23,13 +23,11 @@ Start sending logs:
 // this should be executed only once in the app
 stackify.start({apiKey: '***', env: 'dev'});
 ```
-The following options could be passed. 'apiKey' is the only one that required:
-* __apiKey:__ client license key
-* __env:__ environment name
-* __exitOnError:__ boolean flag indicating whether to shutdown the server after logging an uncaught exception, defaults to false
-* __proxy:__ proxy server if you want to send requests via proxy.
-* __debug:__ boolean flag, turning on the debug mode. When set to true the log file (`stackify-debug.log`) is created in the working directory and all of the library actions is being written to it, defaults to false.
-
+The following options could be passed to the start method:
+* __apiKey: (Required)__ Stackify API key
+* __env:__ Environment name. If a Stackify agent is installed, this does not need to be set. If a Stackify agent is not installed, this should be set to the environment name.
+* __proxy:__ HTTP proxy
+* __debug:__ Enables internal debug logging for troubleshooting. Defaults to false.
 
 *Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.
 
@@ -92,7 +90,7 @@ If logging isn't working, enable internal debug logging for Stackify by setting 
 stackify.start({apiKey: '***', env: 'dev', debug: true});
 ```
 
-You will see stackify-debug.log in your application's directory.
+You will see `stackify-debug.log` in your application's directory.
 
 ## License
 
