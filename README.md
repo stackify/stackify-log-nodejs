@@ -17,9 +17,7 @@ $ npm install stackify-logger
 
 ```js
 var stackify = require('stackify-logger');
-```
-Start sending logs:
-```js
+
 // this should be executed only once in the app
 stackify.start({apiKey: '***', env: 'dev'});
 ```
