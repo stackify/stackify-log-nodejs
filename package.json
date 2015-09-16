@@ -31,5 +31,12 @@
   },
   "_id": "stackify-logger@1.0.1",
   "_shasum": "33730db585d53b43988b359145d76629e7ec35f1",
-  "_from": "stackify-logger@"
+  "_from": "stackify-logger@",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "mocha": "^2.3.2",
+    "should": "^7.1.0",
+    "sinon": "^1.16.1",
+    "supertest": "^1.1.0"
+  }
 }
