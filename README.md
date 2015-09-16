@@ -1,5 +1,7 @@
 #Stackify Log API for Node.js
 
+[![npm version](https://badge.fury.io/js/stackify-logger.svg)](http://badge.fury.io/js/stackify-logger)
+
 Errors and Logs Overview:
 
 http://docs.stackify.com/m/7787/l/189767
