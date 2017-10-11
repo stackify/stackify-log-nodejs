@@ -29,7 +29,7 @@ The following options could be passed to the start method:
 * __proxy:__ HTTP proxy
 * __debug:__ Enables internal debug logging for troubleshooting. Defaults to false.
 
-*Notice:* stackify-logger sends synchronous requests if you call `process.exit()`. Sending via proxy wouldn't be possible in this case.
+*Notice:* When calling `process.exit()`, the stackify-logger will synchronously send log messages that have been queued but not transmitted. Sending via proxy wouldn't be possible in this case.
 
 #### Using direct logger
 
