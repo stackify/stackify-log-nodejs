@@ -28,6 +28,7 @@ The following options could be passed to the start method:
 * __env:__ Environment name. If a Stackify agent is installed, this does not need to be set. If a Stackify agent is not installed, this should be set to the environment name.
 * __proxy:__ HTTP proxy
 * __debug:__ Enables internal debug logging for troubleshooting. Defaults to false.
+* __logServerVariables:__ Enables adding server variables to error logs. Defaults to true.
 
 *Notice:* When calling `process.exit()`, the stackify-logger will synchronously send log messages that have been queued but not transmitted. Sending via proxy wouldn't be possible in this case.
 
