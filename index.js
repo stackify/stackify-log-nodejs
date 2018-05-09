@@ -21,6 +21,7 @@ module.exports = {
     info: logger.methods.info,
     warn: logger.methods.warn,
     error: logger.methods.error,
+    fatal: logger.methods.fatal,
 
     //common method for handling logged messages
     push: logger.methods.push,
