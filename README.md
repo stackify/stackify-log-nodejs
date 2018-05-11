@@ -34,7 +34,7 @@ The following options could be passed to the start method:
 
 #### Using direct logger
 
-If you are not using Winston logger you can use default Stackify logger. It has 5 levels of messages: `trace`, `debug`, `info`, `warn` and `error`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
+If you are not using Winston logger you can use default Stackify logger. It has 6 levels of messages: `trace`, `debug`, `info`, `warn`, `error`, and `fatal`. To send the message to Stackify API you should run one of the following methods in any place of your code where you want to track some information:
 ```js
 stackify.log(level, message [, meta])
 stackify.trace(message [, meta])
@@ -42,6 +42,7 @@ stackify.debug(message [, meta])
 stackify.info(message [, meta])
 stackify.warn(message [, meta])
 stackify.error(message [, meta])
+stackify.fatal(message [, meta])
 ```
 
 **Message** must be a string.
@@ -59,7 +60,7 @@ stackify.info('any message', {anything: 'this is metadata'});
 stackify.warn('attention');
 stackify.log('error', {error : new Error()});
 ```
-When logging an error message you can pass an Error object in metadata like in the last example, so the exception details would be available.
+When logging an error or fatal message you can pass an Error object in metadata like in the last example, so the exception details would be available.
 
 #### Exception handling
 By executing `stackify.start()` you set a handler for uncaught exceptions.
