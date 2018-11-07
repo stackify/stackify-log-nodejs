@@ -23,6 +23,8 @@ module.exports = {
     error: logger.methods.error,
     fatal: logger.methods.fatal,
 
+    addMessageObjectToStorage: logger.methods.addMessageObjectToStorage,
+
     //common method for handling logged messages
     push: logger.methods.push,
     // setting logger name to Winston logger if it's used
