@@ -1,10 +1,10 @@
 {
   "name": "stackify-logger",
-  "version": "1.0.9",
+  "version": "2.0.2",
   "description": "Stackify logs and errors for Node.Js",
   "main": "index.js",
   "scripts": {
-    "test": "not specified"
+    "test": "mocha --exit test/*.js"
   },
   "keywords": [
     "stackify",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/stackify/stackify-log-nodejs",
   "dependencies": {
-    "request": "~2.48.x",
+    "request": "^2.88.0",
     "stack-trace": "0.0.9",
     "sync-request": "^1.0.1"
   },
@@ -29,14 +29,14 @@
   "bugs": {
     "url": "https://github.com/stackify/stackify-log-nodejs/issues"
   },
-  "_id": "stackify-logger@1.0.1",
+  "_id": "stackify-logger@2.0.2",
   "_shasum": "33730db585d53b43988b359145d76629e7ec35f1",
   "_from": "stackify-logger@",
   "devDependencies": {
     "express": "^4.13.3",
-    "mocha": "^2.3.2",
+    "mocha": "^5.2.0",
     "should": "^7.1.0",
     "sinon": "^1.16.1",
-    "supertest": "^1.1.0"
+    "supertest": "^3.4.2"
   }
 }
