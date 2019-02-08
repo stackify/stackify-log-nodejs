@@ -80,7 +80,7 @@ describe('Logger', function() {
         request(app).get('/').end(function (err, res) {
           if (err) throw err
 
-          logger.methods.addMessageObjectToStorage({})
+          logger.addMessageObjectToStorage({})
 
           logger.flushLogs() // Flush for the next tests.
 
