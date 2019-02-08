@@ -66,31 +66,6 @@ function senderStubFunc(options, cb, fail) {
 
 describe('Logger', function() {
 
-    context('Test addMessageObjectToStorage', function() {
-
-      var app
-
-      before(function () {
-        app = express()
-        setupBasicExpressMiddleware(app)
-      })
-
-      it('manually adds object to storage', function (done) {
-
-        request(app).get('/').end(function (err, res) {
-          if (err) throw err
-
-          logger.methods.addMessageObjectToStorage({})
-
-          logger.flushLogs() // Flush for the next tests.
-
-          done()
-        })
-
-      })
-
-    });
-
     context('Express middleware with no API key specified', function(){
 
         var app;
