@@ -25,7 +25,9 @@ stackify.start({apiKey: '***', env: 'dev'});
 ```
 The following options could be passed to the start method:
 * __apiKey (Required):__ Stackify API key
+* __appName (Required):__ Application name
 * __env:__ Environment name. If a Stackify agent is installed, this does not need to be set. If a Stackify agent is not installed, this should be set to the environment name.
+
 * __proxy:__ HTTP proxy
 * __debug:__ Enables internal debug logging for troubleshooting. Defaults to false.
 * __logServerVariables:__ Enables adding server variables to error logs. Defaults to true.
