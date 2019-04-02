@@ -21,7 +21,7 @@ $ npm install stackify-logger
 var stackify = require('stackify-logger');
 
 // this should be executed only once in the app
-stackify.start({apiKey: '***', env: 'dev'});
+stackify.start({apiKey: '***', appName: 'Node Application', env: 'dev'});
 ```
 The following options could be passed to the start method:
 * __apiKey (Required):__ Stackify API key
@@ -90,7 +90,7 @@ To handle exceptions correctly put this right after all route handlers.
 If logging isn't working, enable internal debug logging for Stackify by setting the debug flag in the Stackify options.
 
 ```js
-stackify.start({apiKey: '***', env: 'dev', debug: true});
+stackify.start({apiKey: '***', appName: 'Node Application', env: 'dev', debug: true});
 ```
 
 You will see `stackify-debug.log` in your application's directory.
