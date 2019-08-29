@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/stackify/stackify-log-nodejs",
   "dependencies": {
+    "google-protobuf": "^3.9.1",
     "request": "^2.88.0",
     "stack-trace": "0.0.9",
     "sync-request": "^1.0.1"
