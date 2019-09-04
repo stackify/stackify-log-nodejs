@@ -6,6 +6,7 @@ module.exports = {
     LOG_SAVE_PATH          : '/Log/Save',
     SOCKET_PATH            : '/usr/local/stackify/stackify.sock',
     SOCKET_URL             : 'http://log',
+    TRANSPORT              : 'default',
     DELAY: { // possible delay values in millis
         ONE_SECOND_DELAY   : 1000,
         FIVE_SECONDS_DELAY : 5000,
