@@ -1,8 +1,5 @@
 "use strict";
 
-var path = require('path');
-var protobufData = require(path.join(__dirname, '../proto/stackify-agent_pb'));
-
 var exports = module.exports = {};
 
 exports.setLogGroup = function(log_group, opt) {
@@ -26,7 +23,7 @@ exports.setLogGroupLog = function(log, messages) {
   log.setSourceMethod(messages['SrcMethod']);
   log.setSourceLine(messages['SrcLine']);
   log.setId(messages['id']);
-  // log.setTagsList();
+  // log.setTagsList(); // Optional
   return log;
 }
 
@@ -40,7 +37,6 @@ exports.setLogError = function(log_error, ex) {
 }
 
 exports.setEnvironmentDetail = function(env_detail, env) {
-  console.log('\nsetEnvironmentDetail:',env)
   env_detail.setDeviceName(env['DeviceName']);
   env_detail.setApplicationName(env['AppName']);
   env_detail.setApplicationLocation(env['AppLocation']);
@@ -60,6 +56,18 @@ exports.setErrorItem = function(error_item, error) {
   return error_item;
 }
 
+exports.setWebRequestDetail = function(web_request, req_details) {
+  web_request.setUserIpAddress(req_details['UserIPAddress']);
+  web_request.setHttpMethod(req_details['HttpMethod']);
+  web_request.setRequestProtocol(req_details['RequestProtocol']);
+  web_request.setRequestUrl(req_details['RequestUrl']);
+  web_request.setRequestUrlRoot(req_details['RequestUrlRoot']);
+  web_request.setPostDataRaw(req_details['PostData']);
+  web_request.setRequestUrl(req_details['RequestUrl']);
+
+  return web_request;
+}
+
 exports.setTraceFrame = function(trace_frame, stack) {
   trace_frame.setCodeFilename(stack['CodeFileName']);
   trace_frame.setLineNumber(stack['LineNum']);
@@ -67,6 +75,3 @@ exports.setTraceFrame = function(trace_frame, stack) {
 
   return trace_frame;
 }
-
-// function setLogGroupLog() {
-// }

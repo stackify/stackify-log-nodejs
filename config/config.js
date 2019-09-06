@@ -5,7 +5,7 @@ module.exports = {
     IDENTIFY_PATH          : '/Metrics/IdentifyApp',
     LOG_SAVE_PATH          : '/Log/Save',
     SOCKET_PATH            : '/usr/local/stackify/stackify.sock',
-    SOCKET_URL             : 'http://log',
+    SOCKET_URL             : '/log',
     TRANSPORT              : 'default',
     DELAY: { // possible delay values in millis
         ONE_SECOND_DELAY   : 1000,
