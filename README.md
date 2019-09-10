@@ -19,7 +19,7 @@ $ npm install stackify-logger
 ### There are two(2) available transport types that you can choose:
 
 1. Default:   
-If you're using the default transport you will need some required variables such as apiKey and appName. See below for the details: 
+If you're using the default transport you'll need some required variables such as apiKey, env and appName. See below for the details: 
 
 ```js
 var stackify = require('stackify-logger');
@@ -30,21 +30,22 @@ stackify.start({apiKey: '***', appName: 'Node Application', env: 'dev'});
 The following options could be passed to the start method:
 * __apiKey (Required):__ Stackify API key
 * __appName (Required):__ Application name
-* __env:__ Environment name. If a Stackify agent is installed, this does not need to be set. If a Stackify agent is not installed, this should be set to the environment name.
+* __env (Required):__ Environment name. If a Stackify agent is installed, this does not need to be set. If a Stackify agent is not installed, this should be set to the environment name.
 * __proxy:__ HTTP proxy
 * __debug:__ Enables internal debug logging for troubleshooting. Defaults to false.
 * __logServerVariables:__ Enables adding server variables to error logs. Defaults to true.
 
 *Notice:* When calling `process.exit()`, the stackify-logger will synchronously send log messages that have been queued but not transmitted. Sending via proxy wouldn't be possible in this case.
 
-2. Unix Socket transport:   
-If you're using the unix socket you'll need the appName and transport variable only.
+2. Unix Socket:   
+If you're using the unix socket transport you'll need the appName, env and transport variable only.
 
 ```js
 var stackify = require('stackify-logger');
 
 stackify.start({
   appName: '<app name>',
+  env: 'Production'
   transport: 'agent_socket', // agent_socket is required
 });
 ```

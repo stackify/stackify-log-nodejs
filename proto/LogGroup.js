@@ -2,6 +2,11 @@
 
 var exports = module.exports = {};
 
+/*
+ *** setLogGroup(log_group, opt)
+ *** @log_group {Object} instance of LogGroup class
+ *** @opt {Object} data
+ */
 exports.setLogGroup = function(log_group, opt) {
   log_group.setEnvironment(opt.Env);
   log_group.setServerName(opt.ServerName);
@@ -13,6 +18,11 @@ exports.setLogGroup = function(log_group, opt) {
   return log_group;
 };
 
+/*
+ *** setLogGroupLog(log, messages)
+ *** @log {Object} instance of LogGroup.Log
+ *** @messages {Object} data
+ */
 exports.setLogGroupLog = function(log, messages) {
   log.setMessage(messages['Msg']);
   log.setData(messages['Data']);
@@ -27,6 +37,11 @@ exports.setLogGroupLog = function(log, messages) {
   return log;
 }
 
+/*
+ *** setLogError(log_error, ex)
+ *** @log_error {Object} instance of LogGroup.Log.Error
+ *** @ex {Object} data
+ */
 exports.setLogError = function(log_error, ex) {
   log_error.setDateMillis(ex['OccurredEpochMillis']);
   // log_error.setWebRequestDetail(); // Optional
@@ -36,6 +51,11 @@ exports.setLogError = function(log_error, ex) {
   return log_error;
 }
 
+/*
+ *** setEnvironmentDetail(env_detail, env)
+ *** @env_detail {Object} instance of LogGroup.Log.Error.EnvironmentDetail
+ *** @env {Object} data
+ */
 exports.setEnvironmentDetail = function(env_detail, env) {
   env_detail.setDeviceName(env['DeviceName']);
   env_detail.setApplicationName(env['AppName']);
@@ -46,6 +66,11 @@ exports.setEnvironmentDetail = function(env_detail, env) {
   return env_detail;
 }
 
+/*
+ *** setErrorItem(error_item, error)
+ *** @error_item {Object} instance of LogGroup.Log.Error.ErrorItem
+ *** @error {Object} data
+ */
 exports.setErrorItem = function(error_item, error) {
   error_item.setMessage(error['Message']);
   error_item.setErrorType(error['ErrorType']);
@@ -56,6 +81,11 @@ exports.setErrorItem = function(error_item, error) {
   return error_item;
 }
 
+/*
+ *** setWebRequestDetail(web_request, req_details)
+ *** @web_request {Object} instance of LogGroup.Log.Error.WebRequestDetail
+ *** @req_details {Object} data
+ */
 exports.setWebRequestDetail = function(web_request, req_details) {
   web_request.setUserIpAddress(req_details['UserIPAddress']);
   web_request.setHttpMethod(req_details['HttpMethod']);
@@ -68,6 +98,11 @@ exports.setWebRequestDetail = function(web_request, req_details) {
   return web_request;
 }
 
+/*
+ *** setTraceFrame(trace_frame, stack)
+ *** @trace_frame {Object} instance of LogGroup.Log.Error.ErrorItem.TraceFrame
+ *** @stack {Object} data
+ */
 exports.setTraceFrame = function(trace_frame, stack) {
   trace_frame.setCodeFilename(stack['CodeFileName']);
   trace_frame.setLineNumber(stack['LineNum']);

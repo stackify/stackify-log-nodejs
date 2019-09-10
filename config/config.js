@@ -12,7 +12,9 @@ module.exports = {
         FIVE_SECONDS_DELAY : 5000,
         ONE_MINUTE_DELAY   : 60000,
         FIVE_MINUTES_DELAY : 300000,
+        SOCKET_DELAY       : 10000
     },
+    MAX_RETRIES            : 6,
     MSG: {
         QUEUE_CAP          : 10000,
         MIN_BATCH_SIZE     : 10,
