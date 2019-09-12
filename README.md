@@ -1,14 +1,9 @@
-#Stackify Log API for Node.js
-
 [![npm version](https://badge.fury.io/js/stackify-logger.svg)](http://badge.fury.io/js/stackify-logger)
 
-Errors and Logs Overview:
+# Stackify Log API for Node.js
 
-http://support.stackify.com/errors-and-logs-overview/
-
-Sign Up for a Trial:
-
-http://www.stackify.com/sign-up/
+* **Errors and Logs Overview:** - http://support.stackify.com/errors-and-logs-overview/
+* **Sign Up for a Trial:** http://www.stackify.com/sign-up/
 
 ## Installation
 ```bash
@@ -16,10 +11,6 @@ $ npm install stackify-logger
 ```
 
 ## Usage
-### There are two(2) available transport types that you can choose:
-
-1. Default:   
-If you're using the default transport you'll need some required variables such as apiKey, env and appName. See below for the details: 
 
 ```js
 var stackify = require('stackify-logger');
@@ -36,19 +27,6 @@ The following options could be passed to the start method:
 * __logServerVariables:__ Enables adding server variables to error logs. Defaults to true.
 
 *Notice:* When calling `process.exit()`, the stackify-logger will synchronously send log messages that have been queued but not transmitted. Sending via proxy wouldn't be possible in this case.
-
-2. Unix Socket:   
-If you're using the unix socket transport you'll need the appName, env and transport variable only.
-
-```js
-var stackify = require('stackify-logger');
-
-stackify.start({
-  appName: '<app name>',
-  env: 'Production'
-  transport: 'agent_socket', // agent_socket is required
-});
-```
 
 #### Using direct logger
 
@@ -114,7 +92,7 @@ You will see `stackify-debug.log` in your application's directory.
 
 ## License
 
-Copyright 2014 Stackify, LLC.
+Copyright 2019 Stackify, LLC.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
