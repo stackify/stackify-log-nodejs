@@ -10,7 +10,7 @@ module.exports = {
         CONFIG.SELECTED_LOGGER = CONFIG.LOGGER_VERSION;
         CONFIG.LOG_SERVER_VARIABLES = options.logServerVariables === undefined ? true : !!options.logServerVariables;
         debug.set(options.debug);
-        api.methods.transportType(options);
+        api.initialize(options);
         exception.catchException(options.exitOnError || false);
         exception.gracefulExitHandler();
     },
