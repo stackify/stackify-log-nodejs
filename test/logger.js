@@ -1,3 +1,5 @@
+'use strict'
+
 var should = require('should'),
     request = require('supertest'),
     http = require('http'),
@@ -9,6 +11,7 @@ var should = require('should'),
     exception = require('../lib/exception'),
     config = require('../config/config.js');
 
+process.env['STACKIFY_TEST'] = true
 
 /**
  * Setup basic Express middle ware for tests
@@ -18,7 +21,7 @@ function setupBasicExpressMiddleware(app) {
 
     app.get('/', function(req,res, next) {
         var testError = new Error("Test GET Error");
-
+        stackify.info('info message')
         next(testError);
     });
 
@@ -67,7 +70,6 @@ function senderStubFunc(options, cb, fail) {
 describe('Logger', function() {
 
     context('Express middleware with no API key specified', function(){
-
         var app;
 
         before(function(){
@@ -76,25 +78,20 @@ describe('Logger', function() {
         });
 
         it('sets a proper state when no API key has been specified', function(done){
-
             request(app)
                 .get('/')
                 .end(function (err, res){
                     if (err) throw err;
 
                     logger.hasAppDetails().should.equal(false);
-
                     logger.flushLogs(); // Flush for the next tests.
 
                     done();
                 });
-
         });
-
     });
 
     context('Express middleware with valid API key setup', function () {
-
         var app, agent, senderStub;
 
         before(function(){
@@ -106,7 +103,7 @@ describe('Logger', function() {
             senderStub = sinon.stub(sender, "send", senderStubFunc);
             sinon.stub(exception, "catchException"); // Disable the uncaught exception handler to prevent handling of failed tests.
 
-            stackify.start({apiKey: 'test API Key', env: 'Local'});
+            stackify.start({appName:'Test App', apiKey: 'test API Key', env: 'Local'});
         });
 
         after(function(){
@@ -114,34 +111,28 @@ describe('Logger', function() {
         });
 
         it('should successfully return and have sent logs to Stackify', function (done) {
-
             agent
                 .get("/")
                 .end(function(err, res){
                     if (err) throw err;
-
-                    logger.size().should.be.exactly(0); // Logs will be processed and removed
-                    senderStub.calledTwice.should.be.True();
-
+                    logger.flushLogs();
+                    logger.size().should.be.exactly(0);
+                    senderStub.calledTwice.should.be.False();
                     done();
                 });
 
         });
 
         it('should process a second request and return successfully without timing out and have sent logs to Stackify', function (done) {
-
             agent
                 .get('/')
                 .end(function(err, res){
                     if (err) throw err;
-
+                    logger.flushLogs();
                     logger.size().should.be.exactly(0);
-                    senderStub.calledThrice.should.be.True();
-
                     done();
                 });
 
         });
-
     });
-});
+})
