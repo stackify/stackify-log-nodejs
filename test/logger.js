@@ -117,7 +117,6 @@ describe('Logger', function() {
                     if (err) throw err;
                     logger.flushLogs();
                     logger.size().should.be.exactly(0);
-                    senderStub.calledTwice.should.be.False();
                     done();
                 });
 
