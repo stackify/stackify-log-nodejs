@@ -39,7 +39,7 @@ module.exports = {
     _setupConfig: function (settings) {
         var transport_http_endpoint = settings && settings.transport_http_endpoint ? settings.transport_http_endpoint : this.TRANSPORT_HTTP_URL
         var transport = settings && settings.transport ? settings.transport : this.TRANSPORT
-        this.TRANSPORT = transport
+        this.TRANSPORT = transport.trim().toLowerCase()
         if (transport_http_endpoint) {
             var httpEndpoint = new URL(transport_http_endpoint)
             this.TRANSPORT_HTTP.HOSTNAME = httpEndpoint.hostname
@@ -82,10 +82,10 @@ module.exports = {
                 debug.write('[Stackify Node Log API Error] HTTP Transport - HTTP Endpoint is not specified or not a string type.');
                 throw new TypeError('[Stackify Node Log API Error] HTTP Transport - You have to pass an HTTP Endpoint (Must be a string)');
             }
-        } else {
+        } else if (type === 'log') {
             if (!settings.apiKey || (settings.apiKey && typeof (settings.apiKey) !== 'string')) {
-                debug.write('[Stackify Node Log API Error] Log - You have to pass API key to initialize Stackify Logger');
-                throw new TypeError('[Stackify Node Log API Error] Log Transport - You have to pass API key');
+                debug.write('[Stackify Node Log API Error] Log Transport - You have to pass API key to initialize Stackify Logger.');
+                throw new TypeError('[Stackify Node Log API Error] Log Transport - You have to pass API key to initialize Stackify Logger.');
             }
         }
     }
