@@ -1,9 +1,13 @@
+'use strict'
+
 var should = require('should'),
     request = require('supertest'),
     http = require('http'),
     stackify = require('../'),
-    logger = require('../lib/logger')
+    logger = require('../lib/logger'),
     config = require('../config/config.js');
+
+process.env['STACKIFY_TEST'] = true
 
 var server = http.createServer(function (req, res) {
     try {

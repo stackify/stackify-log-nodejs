@@ -36,8 +36,10 @@
   "_shasum": "33730db585d53b43988b359145d76629e7ec35f1",
   "_from": "stackify-logger@",
   "devDependencies": {
+    "chai": "^4.2.0",
     "express": "^4.13.3",
     "mocha": "^5.2.0",
+    "rewire": "^4.0.1",
     "should": "^7.1.0",
     "sinon": "^1.16.1",
     "supertest": "^3.4.2"

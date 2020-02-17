@@ -8,9 +8,9 @@ module.exports = {
     // start sending logs
     start: function (options) {
         CONFIG.SELECTED_LOGGER = CONFIG.LOGGER_VERSION;
-        CONFIG.LOG_SERVER_VARIABLES = options.logServerVariables === undefined ? true : !!options.logServerVariables;
-        debug.set(options.debug);
-        api.methods.transportType(options);
+        CONFIG.LOG_SERVER_VARIABLES = ((typeof(options) !== 'undefined') && options.logServerVariables !== undefined) ? !!options.logServerVariables : CONFIG.LOG_SERVER_VARIABLES
+        debug.set((typeof(options) !== 'undefined') && options.debug || true);
+        api.initialize(options);
         exception.catchException(options.exitOnError || false);
         exception.gracefulExitHandler();
     },
