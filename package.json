@@ -21,9 +21,10 @@
   },
   "homepage": "https://github.com/stackify/stackify-log-nodejs",
   "dependencies": {
-    "async": "^3.1.0",
+    "async": "2.4.0",
     "google-protobuf": "^3.9.1",
     "request": "^2.88.0",
+    "semver": "^7.1.3",
     "stack-trace": "0.0.9",
     "sync-request": "^6.1.0",
     "node-schedule": "^1.3.2"
