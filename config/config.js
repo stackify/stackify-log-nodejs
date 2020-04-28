@@ -1,6 +1,7 @@
-var URL   = require('url').URL,
+var URL   = require('url'),
     fs    = require('fs'),
-    debug = require('../lib/debug')
+    debug = require('../lib/debug'),
+    semver = require('semver')
 
 module.exports = {
     PROTOCOL               : 'https',
@@ -35,16 +36,24 @@ module.exports = {
     LOGGER_VERSION: 'Node.js Stackify v.1.0',
     WINSTON_LOGGER_VERSION: 'Node.js Winston-Stackify v.1.0',
     X_STACKIFY_PV: 'V1',
-    LOG_SERVER_VARIABLES: true, // determines if server variables should be logged, defaults to true
+    LOG_SERVER_VARIABLES: true, // determines if server variables should be logged, defaults to true,
+    DEBUG: false,
     _setupConfig: function (settings) {
         var transport_http_endpoint = settings && settings.transport_http_endpoint ? settings.transport_http_endpoint : this.TRANSPORT_HTTP_URL
         var transport = settings && settings.transport ? settings.transport : this.TRANSPORT
         this.TRANSPORT = transport.trim().toLowerCase()
         if (transport_http_endpoint) {
-            var httpEndpoint = new URL(transport_http_endpoint)
+            if (semver.satisfies(process.version, '^8.0')) {
+                var MyUrl = URL.URL
+                httpEndpoint = new MyUrl(transport_http_endpoint)
+            } else {
+                httpEndpoint = URL.parse(transport_http_endpoint)
+            }
             this.TRANSPORT_HTTP.HOSTNAME = httpEndpoint.hostname
             this.TRANSPORT_HTTP.PORT = httpEndpoint.port
         }
+        debug.write('Node version: ' + process.versions.node)
+        debug.write('AppName: ' + settings.appName)
         debug.write('Transport: ' + transport)
         debug.write('Transport HTTP Endpoint: ' + transport_http_endpoint)
     },

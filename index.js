@@ -8,8 +8,12 @@ module.exports = {
     // start sending logs
     start: function (options) {
         CONFIG.SELECTED_LOGGER = CONFIG.LOGGER_VERSION;
-        CONFIG.LOG_SERVER_VARIABLES = ((typeof(options) !== 'undefined') && options.logServerVariables !== undefined) ? !!options.logServerVariables : CONFIG.LOG_SERVER_VARIABLES
-        debug.set((typeof(options) !== 'undefined') && options.debug || true);
+        CONFIG.LOG_SERVER_VARIABLES = ((typeof(options) !== undefined) && options.logServerVariables !== undefined) ? !!options.logServerVariables : CONFIG.LOG_SERVER_VARIABLES
+        if (typeof(options) !== undefined && (options.debug !== undefined)) {
+            debug.set(JSON.parse(options.debug))
+        } else {
+            debug.set(CONFIG.DEBUG);
+        }
         api.initialize(options);
         exception.catchException(options.exitOnError || false);
         exception.gracefulExitHandler();
