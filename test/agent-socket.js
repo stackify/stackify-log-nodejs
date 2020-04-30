@@ -12,7 +12,7 @@ var messages = logMessage.getMessages;
 
 describe('Socket Transport', function() {
   it('Log messages successfully send', function (done) {
-    api.methods.sendToSocket(messages, function(err, result) {
+    api.methods.sendToSocket(messages, function(result) {
       expect(result.success).to.be.true
       expect(result.message).to.contain('OK')
       done();
