@@ -1,6 +1,6 @@
 {
   "name": "stackify-logger",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "Stackify logs and errors for Node.Js",
   "main": "index.js",
   "scripts": {
