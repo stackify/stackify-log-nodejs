@@ -1,7 +1,11 @@
 var URL   = require('url'),
     fs    = require('fs'),
     debug = require('../lib/debug'),
-    semver = require('semver')
+    semver = require('semver'),
+    process = require('process');
+
+const RUM_SCRIPT_URL_REGEX_PATTERN = /^((((https?|ftps?|gopher|telnet|nntp):\/\/)|(mailto:|news:))(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)([).!';/?:,][[:blank:|:blank:]])?$/
+const RUM_KEY_REGEX_PATTERN = /^[A-Za-z0-9_-]+$/
 
 module.exports = {
     PROTOCOL               : 'https',
@@ -38,6 +42,39 @@ module.exports = {
     X_STACKIFY_PV: 'V1',
     LOG_SERVER_VARIABLES: true, // determines if server variables should be logged, defaults to true,
     DEBUG: false,
+    RUM_SCRIPT_URL: 'https://stckjs.stackify.com/stckjs.js',
+    RUM_KEY: '',
+    _checkRum: function (settings) {
+        let rumScriptUrl = (typeof(process.env['RETRACE_RUM_SCRIPT_URL']) !== 'undefined') ? process.env['RETRACE_RUM_SCRIPT_URL'] : null;
+        if (rumScriptUrl) {
+            rumScriptUrl = rumScriptUrl.trim();
+        } else if (settings && (typeof(settings.rumScriptUrl) !== 'undefined') && settings.rumScriptUrl) {
+            rumScriptUrl = settings.rumScriptUrl;
+        }
+
+        if (rumScriptUrl) {
+            if (isValidRumScriptUrl(rumScriptUrl)) {
+                this.RUM_SCRIPT_URL= rumScriptUrl
+            } else {
+                throw new TypeError('[Stackify Node Log API Error] RUM Script URL is in invalid format.');
+            }
+        }
+
+        let rumKey = (typeof(process.env['RETRACE_RUM_KEY']) !== 'undefined') ? process.env['RETRACE_RUM_KEY'] : null;
+        if (rumKey) {
+            rumKey = rumKey.trim();
+        } else if (settings && (typeof(settings.rumKey) !== 'undefined') && settings.rumKey) {
+            rumKey = settings.rumKey;
+        }
+
+        if (rumKey) {
+            if (isValidRumKey(rumKey)) {
+                this.RUM_KEY = rumKey
+            } else {
+                throw new TypeError('[Stackify Node Log API Error] RUM Key is in invalid format.');
+            }
+        }
+    },
     _setupConfig: function (settings) {
         var transport_http_endpoint = settings && settings.transport_http_endpoint ? settings.transport_http_endpoint : this.TRANSPORT_HTTP_URL
         var transport = settings && settings.transport ? settings.transport : this.TRANSPORT
@@ -52,10 +89,20 @@ module.exports = {
             this.TRANSPORT_HTTP.HOSTNAME = httpEndpoint.hostname
             this.TRANSPORT_HTTP.PORT = httpEndpoint.port
         }
-        debug.write('Node version: ' + process.versions.node)
-        debug.write('AppName: ' + settings.appName)
-        debug.write('Transport: ' + transport)
-        debug.write('Transport HTTP Endpoint: ' + transport_http_endpoint)
+
+        if (settings) {
+            this.APPNAME = typeof settings.appName !== 'undefined' ? settings.appName : null;
+            this.ENV = typeof settings.env !== 'undefined' ? settings.env : null;
+        }
+
+        this._checkRum(settings);
+
+        if (settings) {
+            debug.write('Node version: ' + process.versions.node)
+            debug.write('AppName: ' + settings.appName)
+            debug.write('Transport: ' + transport)
+            debug.write('Transport HTTP Endpoint: ' + transport_http_endpoint)
+        }
     },
     _validateConfig: function (settings) {
         // check that settings object is correct
@@ -99,3 +146,30 @@ module.exports = {
         }
     }
 };
+
+
+function isValidRumScriptUrl (url) {
+    if (!url) {
+        return false
+    }
+    if (!isString(url)) {
+        return false
+    }
+    return RUM_SCRIPT_URL_REGEX_PATTERN.test(url)
+}
+
+function isValidRumKey (key) {
+    if (!key) {
+        return false
+    }
+
+    if (!isString(key)) {
+        return false
+    }
+
+    return RUM_KEY_REGEX_PATTERN.test(key)
+}
+
+function isString (obj) {
+    return typeof obj === 'string';
+}
