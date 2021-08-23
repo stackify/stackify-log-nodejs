@@ -2,7 +2,8 @@ var api       = require('./lib/api'), // wrappers for API calls
     debug     = require('./lib/debug'), // debug mode module
     exception = require('./lib/exception'),  // exception handler module
     logger    = require('./lib/logger'), // logging methods module
-    CONFIG    = require('./config/config');
+    CONFIG    = require('./config/config'), // config
+    RUM       = require('./lib/rum'); // Rum
 
 module.exports = {
     // start sending logs
@@ -37,5 +38,8 @@ module.exports = {
         }
     },
 
-    expressExceptionHandler: exception.expressExceptionHandler
+    expressExceptionHandler: exception.expressExceptionHandler,
+    injectRumContent: function () {
+        return RUM.injectRumContent();
+    }
 };

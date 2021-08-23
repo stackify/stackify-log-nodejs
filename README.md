@@ -80,6 +80,24 @@ app.use(stackify.expressExceptionHandler);
 
 To handle exceptions correctly put this right after all route handlers.
 
+### **Real User Monitoring (RUM)**
+
+Real user monitoring injects a script tag containing the [RUM JS](https://stackify.com/retrace-real-user-monitoring/) that is responsible for capturing information about the http requests on the browser. This approach is manual and needs to be configured.
+
+#### RUM - Setup
+
+```js
+let stackify = require('stackify-logger');
+
+// Configuration
+stackify.start({apiKey: '***', appName: 'Node Application', env: 'dev', rumKey: 'YourRumKey'});
+
+// Use this on the view/controller handler
+require('stackify-logger').injectRumContent()
+// or
+stackify.injectRumContent()
+```
+
 ## Troubleshooting
 
 If logging isn't working, enable internal debug logging for Stackify by setting the debug flag in the Stackify options.
