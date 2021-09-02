@@ -21,3 +21,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'zip -r stackify-log-nodejs.zip lib/ proto/ package-lock.json index.js'
+- task: Veracode@3
+  inputs:
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode'
+    veracodeAppProfile: 'Retrace NodeJS Logger'
+    version: 'AZ-Devops-Build-$(build.buildNumber)'
+    filepath: 'stackify-log-nodejs.zip'
+    maximumWaitTime: '360'
