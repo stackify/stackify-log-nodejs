@@ -16,8 +16,7 @@ steps:
 
 - script: |
     npm install
-    npm run test
-  displayName: 'npm install and test'
+  displayName: 'npm install'
 - task: CmdLine@2
   inputs:
     script: 'zip -r stackify-log-nodejs.zip lib/ proto/ package-lock.json index.js'
