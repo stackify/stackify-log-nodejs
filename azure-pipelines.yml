@@ -20,6 +20,15 @@ steps:
   displayName: 'npm install'
 - task: CmdLine@2
   inputs:
+    script: 'curl -sSL https://www.sourceclear.com/install | sh'
+- task: CmdLine@2
+  inputs:
+    script: 'srcclr scan .'
+  env:
+    SRCCLR_API_TOKEN: $(SRCCLR_API_TOKEN)
+
+- task: CmdLine@2
+  inputs:
     script: 'zip -r stackify-log-nodejs.zip lib/ proto/ package-lock.json index.js'
 - task: Veracode@3
   inputs:
