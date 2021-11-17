@@ -44,6 +44,7 @@ module.exports = {
     DEBUG: false,
     RUM_SCRIPT_URL: 'https://stckjs.stackify.com/stckjs.js',
     RUM_KEY: '',
+    EVENT_ERROR: 'stackifyError',
     _checkRum: function (settings) {
         let rumScriptUrl = (typeof(process.env['RETRACE_RUM_SCRIPT_URL']) !== 'undefined') ? process.env['RETRACE_RUM_SCRIPT_URL'] : null;
         if (rumScriptUrl) {

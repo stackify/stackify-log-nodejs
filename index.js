@@ -3,7 +3,10 @@ var api       = require('./lib/api'), // wrappers for API calls
     exception = require('./lib/exception'),  // exception handler module
     logger    = require('./lib/logger'), // logging methods module
     CONFIG    = require('./config/config'), // config
+    event     = require('./lib/event'), // event emitter module
     RUM       = require('./lib/rum'); // Rum
+
+event.on(CONFIG.EVENT_ERROR, logger.methods.push);
 
 module.exports = {
     // start sending logs
