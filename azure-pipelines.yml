@@ -46,3 +46,4 @@ steps:
     version: 'AZ-Devops-Build-$(build.buildNumber)'
     filepath: 'stackify-log-nodejs.zip'
     maximumWaitTime: '360'
+    deleteincompletescan: 2
