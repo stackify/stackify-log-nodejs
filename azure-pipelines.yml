@@ -39,12 +39,6 @@ steps:
   inputs:
     script: 'zip -r stackify-log-nodejs.zip lib/ proto/ package-lock.json index.js'
 
-- task: Bash@3
-  inputs:
-    filePath: 'VeracodeDeleteStuckScan.sh'
-  env:
-    vkey: $(vkey)
-
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
