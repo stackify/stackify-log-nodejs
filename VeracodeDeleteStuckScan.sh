@@ -1,5 +1,6 @@
 #!/bin/bash
 # Based on previous code writen by Unregistered436 - https://github.com/unregistered436/veracode-integrations/blob/master/shell-script/veracode-scan.sh
+#Define AppName to pull build ID
 #PRESCAN_SLEEP_TIME=60
 SCAN_SLEEP_TIME=120
 IN_PROGRESS_SLEEP_CHECKS=0
@@ -62,7 +63,7 @@ echo ""
                    #rm -rf prescanerror.txt
                    echo 'Double-Check the errors printed above in the prescan file.'
                    exit 1 && break
-             elif [[ $scan_status = *"Incomplete"* ]] || [[ $IN_PROGRESS_SLEEP_CHECKS -gt $IN_PROGRESS_SLEEP_THRESHOLD ]];
+             elif [[ $scan_status = *"Incomplete"* ]] || [[ $scan_status = *"Scan In Process"* ]] && [[ $IN_PROGRESS_SLEEP_CHECKS -gt $IN_PROGRESS_SLEEP_THRESHOLD ]];
              then
                   echo "[INFO] The results from the previous scan are incomplete."
                   echo "[INFO] The scan is missing required information which includes uploading files, selecting modules or information for vendor acceptance of 3rd party scan requests."
