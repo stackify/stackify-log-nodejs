@@ -1,5 +1,10 @@
+// Copyright (c) 2024 BMC Software, Inc.
+// Copyright (c) 2021-2024 Netreo
+// Copyright (c) 2019 Stackify
+
 var URL   = require('url'),
     fs    = require('fs'),
+    path  = require('path'),
     debug = require('../lib/debug'),
     semver = require('semver'),
     process = require('process');
@@ -45,6 +50,7 @@ module.exports = {
     RUM_SCRIPT_URL: 'https://stckjs.stackify.com/stckjs.js',
     RUM_KEY: '',
     EVENT_ERROR: 'stackifyError',
+    DEBUG_LOG_PATH: path.join(process.cwd(), 'stackify-debug.log'),
     _checkRum: function (settings) {
         let rumScriptUrl = (typeof(process.env['RETRACE_RUM_SCRIPT_URL']) !== 'undefined') ? process.env['RETRACE_RUM_SCRIPT_URL'] : null;
         if (rumScriptUrl) {

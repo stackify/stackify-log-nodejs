@@ -1,3 +1,7 @@
+// Copyright (c) 2024 BMC Software, Inc.
+// Copyright (c) 2021-2024 Netreo
+// Copyright (c) 2019 Stackify
+
 var api       = require('./lib/api'), // wrappers for API calls
     debug     = require('./lib/debug'), // debug mode module
     exception = require('./lib/exception'),  // exception handler module
@@ -13,14 +17,22 @@ module.exports = {
     start: function (options) {
         CONFIG.SELECTED_LOGGER = CONFIG.LOGGER_VERSION;
         CONFIG.LOG_SERVER_VARIABLES = ((typeof(options) !== undefined) && options.logServerVariables !== undefined) ? !!options.logServerVariables : CONFIG.LOG_SERVER_VARIABLES
-        if (typeof(options) !== undefined && (options.debug !== undefined)) {
-            debug.set(JSON.parse(options.debug));
-        } else {
-            debug.set(CONFIG.DEBUG);
+        var callback = function() {
+            exception.catchException(options.exitOnError || false);
+            exception.gracefulExitHandler();
+            api.initialize(options);
         }
-        api.initialize(options);
-        exception.catchException(options.exitOnError || false);
-        exception.gracefulExitHandler();
+        if (typeof(options) !== undefined && (options.debug !== undefined)) {
+            debug.set({
+                debug: JSON.parse(options.debug),
+                debug_log_path: typeof options.debug_log_path === 'string' ? options.debug_log_path : CONFIG.DEBUG_LOG_PATH
+            }, callback);
+        } else {
+            debug.set({
+                debug: CONFIG.DEBUG,
+                debug_log_path: CONFIG.DEBUG_LOG_PATH
+            }, callback);
+        }
     },
 
     log: logger.methods.log,
